@@ -5,6 +5,8 @@ import violet.neon.demostream.model.Employee;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -16,16 +18,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public Employee findMaxSalaryByDepartment(int departmentId) {
-        List<Employee> employeeByDepartment = employeeService.getEmployeeListByDepartment(departmentId);
-
-        return employeeByDepartment.stream().max(Comparator.comparingInt(Employee::getSalary)).get();
+        return employeeService.getEmployeeListByDepartment(departmentId).stream().max(Comparator.comparingInt(Employee::getSalary)).get();
     }
 
     @Override
     public Employee findMinSalaryByDepartment(int departmentId) {
-        List<Employee> employeeByDepartment = employeeService.getEmployeeListByDepartment(departmentId);
-
-        return employeeByDepartment.stream().min(Comparator.comparingInt(Employee::getSalary)).get();
+        return employeeService.getEmployeeListByDepartment(departmentId).stream().min(Comparator.comparingInt(Employee::getSalary)).get();
     }
 
     @Override
@@ -34,7 +32,7 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public List<Employee> findAll() {
-        return employeeService.findAllEmployees().stream().toList();
+    public Map<Integer, List<Employee>> findAll() {
+        return employeeService.findAllEmployees().stream().collect(Collectors.groupingBy(Employee::getDepartment));
     }
 }

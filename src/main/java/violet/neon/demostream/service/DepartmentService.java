@@ -3,6 +3,7 @@ package violet.neon.demostream.service;
 import violet.neon.demostream.model.Employee;
 
 import java.util.List;
+import java.util.Map;
 
 public interface DepartmentService {
     Employee findMaxSalaryByDepartment(int departmentId);
@@ -11,5 +12,5 @@ public interface DepartmentService {
 
     List<Employee> findAllByDepartment(int departmentId);
 
-    List<Employee> findAll();
+    Map<Integer, List<Employee>> findAll();
 }

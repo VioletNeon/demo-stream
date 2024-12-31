@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import violet.neon.demostream.model.Employee;
 import violet.neon.demostream.service.DepartmentService;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,11 +31,11 @@ public class DepartmentController {
     }
 
     @GetMapping(path = "/all")
-    public List<Employee> all(@RequestParam(required = false) Optional<Integer> departmentId) {
+    public Collection all(@RequestParam(required = false) Optional<Integer> departmentId) {
         if (departmentId.isPresent()) {
             return departmentService.findAllByDepartment(departmentId.get());
         } else {
-            return departmentService.findAll();
+            return departmentService.findAll().entrySet();
         }
     }
 }
