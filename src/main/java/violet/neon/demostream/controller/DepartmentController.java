@@ -8,7 +8,6 @@ import violet.neon.demostream.model.Employee;
 import violet.neon.demostream.service.DepartmentService;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
