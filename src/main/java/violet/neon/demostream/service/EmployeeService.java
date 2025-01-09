@@ -16,7 +16,7 @@ public interface EmployeeService {
 
     List<Employee> getEmployeeListByDepartment(int department);
 
-    float getSalaryMinByDepartment(int department);
+    int getSalaryMinByDepartment(int department);
 
     int getSalaryMaxByDepartment(int department);
 

@@ -14,7 +14,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final Map<String, Employee> employees;
     private final int MAX_EMPLOYEES = 10;
 
-    public EmployeeServiceImpl(List<Employee> employees) {
+    public EmployeeServiceImpl() {
         this.employees = new HashMap<>();
     }
 
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeNotFoundException();
         }
 
-        employees.remove(employee);
+        employees.remove(employee.getFullName());
 
         return employee;
     }
@@ -79,7 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public float getSalaryMinByDepartment(int department) {
+    public int getSalaryMinByDepartment(int department) {
         Employee employeeWithMinSalary = getEmployeeListByDepartment(department)
                 .stream()
                 .min(Comparator.comparingInt(Employee::getSalary))
@@ -126,7 +126,7 @@ public class EmployeeServiceImpl implements EmployeeService {
                 });
     }
 
-    public void showEmployeeWithoutDepartment(Employee employee) {
+    private void showEmployeeWithoutDepartment(Employee employee) {
         System.out.println("Employee {" + "fullName='" + employee.getFullName() + '\'' + ", salary=" + employee.getSalary() + '}');
     }
 
